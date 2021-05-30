@@ -1,36 +1,79 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, Image, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>1</Text>
-      <Text style={[styles.text, styles.text2]}>2</Text>
-      <Text style={styles.text}>3</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.container}>
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+        <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+        <Image
+          source={{
+            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+            width: 128,
+            height: 128,
+          }}
+        />
+      </ScrollView>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
+  },
+  item: {
+    flex: 1,
+    height: 50,
     justifyContent: 'center',
-    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: 'orange',
   },
   text: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: 'red',
+    fontSize: 20,
     textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  text2: {
-    flex: 2,
   },
 });
