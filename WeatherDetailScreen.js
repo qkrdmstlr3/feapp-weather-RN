@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActiveIndicator, Image, StyleSheet, View, Text } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, View, Text } from 'react-native';
 import Constants from 'expo-constants';
 
 const { apiKey, baseUrl, region } = Constants.manifest.extra.openWeatherApi;
@@ -29,7 +29,7 @@ export default function WeatherDetailScreen({
   }, []);
 
   const renderTemperature = () => {
-    constcelsius = state.main.temp - 273.15;
+    const celsius = state.main.temp - 273.15;
     return <Text>온도: {celsius.toFixed(1)}</Text>;
   };
 
@@ -50,7 +50,7 @@ export default function WeatherDetailScreen({
   return (
     <View style={styles.container}>
       {state.isLoading ? (
-        <ActiveIndicator size="large" />
+        <ActivityIndicator size="large" />
       ) : (
         <View style={styles.container}>
           {renderTemperature()}
