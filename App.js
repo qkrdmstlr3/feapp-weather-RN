@@ -1,39 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, FlatList, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import fruits from './fruits';
+import CityList from './CityList';
 
 export default function App() {
-  const [cities, setCities] = useState([]);
-
-  useEffect(() => {
-    // 기존 주소가 에러나서 이전 리액트 수업시간에 받은 주소 사용하였습니다.
-    fetch('http://riotkr.mockable.io/weather-crawlers/cities')
-      .then((response) => response.json())
-      .then((cities) => {
-        console.log('cities =', cities);
-        setCities(cities);
-      });
-  }, []);
-
-  const renderItem = (city) => {
-    return (
-      <View style={styles.item}>
-        <Text style={styles.text}>{city}</Text>
-      </View>
-    );
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        style={styles.container}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => renderItem(item)}
-        data={cities}
-      />
+      <CityList />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
