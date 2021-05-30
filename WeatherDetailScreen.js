@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { ActiveIndicator, Image, StyleSheet, View, Text } from 'react-native';
+import Constants from 'expo-constants';
 
-const API_KEY = '32d9c849094b5dd5ce6a7e17fe2817fc';
+const { apiKey, baseUrl, region } = Constants.manifest.extra.openWeatherApi;
+
 const queryUrl = (city) =>
-  `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+  `${baseUrl}/weather?q=${city}&appid=${apiKey}&lang=${region}`;
 
 export default function WeatherDetailScreen({
   route: {
@@ -23,21 +25,40 @@ export default function WeatherDetailScreen({
           isLoading: false,
         });
       });
-    navigation.setOptions({ title: `Weather Information: ${city}` });
+    navigation.setOptions({ title: `${city} 날씨` });
   }, []);
 
-  if (state.isLoading) {
-    return (
-      <View style={styles.container}>
-        <Text>데이터를 불러오는 중입니다.</Text>
-      </View>
-    );
-  }
+  const renderTemperature = () => {
+    constcelsius = state.main.temp - 273.15;
+    return <Text>온도: {celsius.toFixed(1)}</Text>;
+  };
 
-  let celsius = state.main.temp - 273.15;
+  const renderWeatherCondition = () => {
+    return state.weather.map(({ icon }, index) => (
+      <View key={index}>
+        <Image
+          source={{
+            uri: `http://openweathermap.org/img/wn/${icon}@2x.png`,
+            width: 72,
+            height: 72,
+          }}
+        />
+      </View>
+    ));
+  };
+
   return (
     <View style={styles.container}>
-      <Text>온도: {celsius.toFixed(1)}</Text>
+      {state.isLoading ? (
+        <ActiveIndicator size="large" />
+      ) : (
+        <View style={styles.container}>
+          {renderTemperature()}
+          <View style={styles.conditionContainer}>
+            {renderWeatherCondition()}
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -45,6 +66,11 @@ export default function WeatherDetailScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#8888FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  conditionContainer: {
+    flexDirection: 'row',
   },
 });

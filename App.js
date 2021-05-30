@@ -31,12 +31,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Cities' }}
+          options={{ title: '지역 선택' }}
         />
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          options={{ title: 'Weather' }}
+          options={{ title: '날씨' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
