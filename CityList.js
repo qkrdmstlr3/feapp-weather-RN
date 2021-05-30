@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 
-export default function CityList() {
+export default function CityList(props) {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,9 @@ export default function CityList() {
 
   const onPressCity = (item) => {
     console.log('onPresscity =', item);
+    props.navigation.navigate('Detail', {
+      city: item,
+    });
   };
 
   const renderItem = (city) => {
